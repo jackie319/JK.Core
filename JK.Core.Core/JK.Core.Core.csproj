@@ -4,4 +4,11 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Caching\" />
+    <Folder Include="Config\" />
+    <Folder Include="Infrastructure\DependencyManagement\" />
+    <Folder Include="Plugins\" />
+  </ItemGroup>
+
 </Project>
