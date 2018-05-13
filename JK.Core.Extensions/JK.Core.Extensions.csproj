@@ -4,4 +4,14 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Image\" />
+    <Folder Include="QrCode\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="NPOI.Core.Extension" Version="1.0.0" />
+  </ItemGroup>
+
 </Project>
