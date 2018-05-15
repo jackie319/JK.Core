@@ -8,8 +8,8 @@ namespace JK.Core.Data
     public class JKObjectContext : DbContext, JK.Core.Data.IDbContext
     {
         #region Ctor
-        public JKObjectContext()
-            : base()
+        public JKObjectContext(DbContextOptions<JKObjectContext> options)
+            : base(options)
         {
             //((IObjectContextAdapter) this).ObjectContext.ContextOptions.LazyLoadingEnabled = true;
         }
