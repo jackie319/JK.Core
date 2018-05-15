@@ -1,19 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore.Metadata;
 using System.Text;
-
 namespace JK.Core.Data
 {
     public class JKObjectContext : DbContext, JK.Core.Data.IDbContext
     {
         #region Ctor
-
-        public JKObjectContext(string nameOrConnectionString)
+        public JKObjectContext()
             : base()
         {
             //((IObjectContextAdapter) this).ObjectContext.ContextOptions.LazyLoadingEnabled = true;
         }
+
 
         public bool ProxyCreationEnabled { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public bool AutoDetectChangesEnabled { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
