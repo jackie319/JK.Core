@@ -3,12 +3,15 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System.Text;
+using System.Reflection;
+using System.Linq;
+
 namespace JK.Core.Data
 {
     public class JKObjectContext : DbContext, JK.Core.Data.IDbContext
     {
         #region Ctor
-        public JKObjectContext(DbContextOptions<JKObjectContext> options)
+        public JKObjectContext(DbContextOptions options)
             : base(options)
         {
             //((IObjectContextAdapter) this).ObjectContext.ContextOptions.LazyLoadingEnabled = true;
@@ -37,28 +40,29 @@ namespace JK.Core.Data
 
         #region Utilities
 
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    //dynamically load all configuration
-        //    //System.Type configType = typeof(LanguageMap);   //any of your configuration classes here
-        //    //var typesToRegister = Assembly.GetAssembly(configType).GetTypes()
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //dynamically load all configuration
+            //System.Type configType = typeof(LanguageMap);   //any of your configuration classes here
+            //var typesToRegister = Assembly.GetAssembly(configType).GetTypes()
 
-        //    var typesToRegister = Assembly.GetExecutingAssembly().GetTypes()
-        //    .Where(type => !String.IsNullOrEmpty(type.Namespace))
-        //    .Where(type => type.BaseType != null && type.BaseType.IsGenericType &&
-        //        type.BaseType.GetGenericTypeDefinition() == typeof(NopEntityTypeConfiguration<>));
-        //    foreach (var type in typesToRegister)
-        //    {
-        //        dynamic configurationInstance = Activator.CreateInstance(type);
-        //        modelBuilder.Configurations.Add(configurationInstance);
-        //    }
-        //    //...or do it manually below. For example,
-        //    //modelBuilder.Configurations.Add(new LanguageMap());
+            var typesToRegister = Assembly.GetExecutingAssembly().GetTypes()
+            .Where(type => !String.IsNullOrEmpty(type.Namespace))
+            .Where(type => type.BaseType != null && type.BaseType.IsGenericType &&
+                type.BaseType.GetGenericTypeDefinition() == typeof(NopEntityTypeConfiguration<>));
+            foreach (var type in typesToRegister)
+            {
+                dynamic configurationInstance = Activator.CreateInstance(type);
+                modelBuilder.UsePropertyAccessMode(configurationInstance);
+                //modelBuilder.Configurations.Add(configurationInstance);
+            }
+            //...or do it manually below. For example,
+            //modelBuilder.Configurations.Add(new LanguageMap());
 
 
 
-        //    base.OnModelCreating(modelBuilder);
-        //}
+            base.OnModelCreating(modelBuilder);
+        }
 
         /// <summary>
         /// Attach an entity to the context or return an already attached entity (if it was already attached)
