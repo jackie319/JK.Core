@@ -66,39 +66,39 @@ namespace JK.Data.Model
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AppVersion>(entity =>
-            {
-                entity.HasKey(e => e.Guid)
-                    .ForSqlServerIsClustered(false);
+               {
+                   entity.HasKey(e => e.Guid)
+                       .ForSqlServerIsClustered(false);
 
-                entity.HasIndex(e => e.Id)
-                    .HasName("IX_AppVersion")
-                    .ForSqlServerIsClustered();
+                   entity.HasIndex(e => e.Id)
+                       .HasName("IX_AppVersion")
+                       .ForSqlServerIsClustered();
 
-                entity.Property(e => e.Guid).ValueGeneratedNever();
+                   entity.Property(e => e.Guid).ValueGeneratedNever();
 
-                entity.Property(e => e.AndroidDownLoadUrl)
-                    .IsRequired()
-                    .HasMaxLength(200)
-                    .IsUnicode(false);
+                   entity.Property(e => e.AndroidDownLoadUrl)
+                       .IsRequired()
+                       .HasMaxLength(200)
+                       .IsUnicode(false);
 
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                   entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
-                entity.Property(e => e.IosdownLoadUrl)
-                    .IsRequired()
-                    .HasColumnName("IOSDownLoadUrl")
-                    .HasMaxLength(200)
-                    .IsUnicode(false);
+                   entity.Property(e => e.IosdownLoadUrl)
+                       .IsRequired()
+                       .HasColumnName("IOSDownLoadUrl")
+                       .HasMaxLength(200)
+                       .IsUnicode(false);
 
-                entity.Property(e => e.Project)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                   entity.Property(e => e.Project)
+                       .IsRequired()
+                       .HasMaxLength(50)
+                       .IsUnicode(false);
 
-                entity.Property(e => e.Version)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
+                   entity.Property(e => e.Version)
+                       .IsRequired()
+                       .HasMaxLength(50)
+                       .IsUnicode(false);
+               });
 
             modelBuilder.Entity<Article>(entity =>
             {

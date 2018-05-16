@@ -53,9 +53,11 @@ namespace JK.Core.Data
             foreach (var type in typesToRegister)
             {
                 dynamic configurationInstance = Activator.CreateInstance(type);
-                modelBuilder.UsePropertyAccessMode(configurationInstance);
+                modelBuilder.Entity(configurationInstance);
                 //modelBuilder.Configurations.Add(configurationInstance);
             }
+
+
             //...or do it manually below. For example,
             //modelBuilder.Configurations.Add(new LanguageMap());
 
