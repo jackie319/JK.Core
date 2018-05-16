@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JK.Data", "JK.Data\JK.Data.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jk.CommonApi.WebApi", "Jk.CommonApi.WebApi\Jk.CommonApi.WebApi.csproj", "{AD063702-9E7E-47F2-8475-25870B80C470}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JK.CommonApi.Services", "JK.CommonApi.Services\JK.CommonApi.Services.csproj", "{43BA7E7D-CBB0-4B9E-8A34-C73B825DE1D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{AD063702-9E7E-47F2-8475-25870B80C470}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD063702-9E7E-47F2-8475-25870B80C470}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD063702-9E7E-47F2-8475-25870B80C470}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43BA7E7D-CBB0-4B9E-8A34-C73B825DE1D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43BA7E7D-CBB0-4B9E-8A34-C73B825DE1D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43BA7E7D-CBB0-4B9E-8A34-C73B825DE1D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43BA7E7D-CBB0-4B9E-8A34-C73B825DE1D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{6CE3E58F-E0BC-4D89-AD21-4DA44FC36B2E} = {7C7FD3D5-E68D-4242-9EB0-2C4EF3AF6730}
 		{DB2095F6-8654-4CF1-80B6-5B0D2B4A9F33} = {40D895F4-4D10-4496-BA72-E627DFDECF19}
 		{AD063702-9E7E-47F2-8475-25870B80C470} = {6CE3E58F-E0BC-4D89-AD21-4DA44FC36B2E}
+		{43BA7E7D-CBB0-4B9E-8A34-C73B825DE1D2} = {6CE3E58F-E0BC-4D89-AD21-4DA44FC36B2E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DA420B22-683A-46C2-8BF0-E57E13364A74}
