@@ -120,9 +120,13 @@ namespace Jk.CommonApi.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
+
             app.UseMvc();
             //全局配置跨域，也可以在Controller中灵活配置 [EnableCors("AllowAllOrigin")]
             app.UseCors("AllowAllOrigin");
+
+            //启用静态文件中间件
+            app.UseStaticFiles();
 
             //Swagger
             app.UseSwagger();
@@ -130,6 +134,8 @@ namespace Jk.CommonApi.WebApi
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
             });
+            //自定义样式
+            ////https://docs.microsoft.com/zh-cn/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-2.0&tabs=visual-studio%2Cvisual-studio-xml
         }
     }
 }
