@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Jk.CommonApi.WebApi.Model;
 using JK.CommonApi.Services.IServices;
+using JK.Core.API.Model;
 using JK.Framework.API.BaseController;
 using log4net;
 using Microsoft.AspNetCore.Authorization;
@@ -44,6 +45,16 @@ namespace Jk.CommonApi.WebApi.Controllers
         public int Test()
         {
             return _AppVersion.GetAppVersionCount();
+        }
+        /// <summary>
+        /// 操作类返回模型
+        /// </summary>
+        /// <returns></returns>
+        [Route("Model")]
+        [HttpPost]
+        public ApiResultModel Save()
+        {
+            return this.ResultApiSuccess();
         }
 
 

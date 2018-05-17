@@ -10,6 +10,7 @@ using JK.CommonApi.Services.ServicesImpl;
 using JK.Core.API.Autofac;
 using JK.Core.Core.Data;
 using JK.Core.Data;
+using JK.Framework.API.Filter;
 using log4net;
 using log4net.Config;
 using log4net.Repository;
@@ -40,9 +41,13 @@ namespace Jk.CommonApi.WebApi
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             string connection=Configuration.GetConnectionString("EntityContext");
+            string privateToken = Configuration.GetConnectionString("PrivateToken");
             //内置注入
             //services.AddDbContext<JKObjectContext>(options => options.UseSqlServer(connection));
-            services.AddMvc();
+            services.AddMvc(options => 
+            {
+                options.Filters.Add(new JKApiTokenAuthorizeAttribute(privateToken)); // an instance
+            } );
             //注册HttpContext
            // services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             #region log4net
