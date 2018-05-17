@@ -19,6 +19,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.PlatformAbstractions;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Jk.CommonApi.WebApi
 {
@@ -65,6 +67,26 @@ namespace Jk.CommonApi.WebApi
             });
             #endregion
 
+            #region Swagger
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "接口文档",
+                    Description = "",
+                    TermsOfService = "None"
+                });
+
+                //Set the comments path for the swagger json and ui.
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var xmlPath = Path.Combine(basePath, "JkCommonApiWebApi.xml");
+                c.IncludeXmlComments(xmlPath);
+
+                  c.OperationFilter<HttpHeaderOperation>(); // 添加httpHeader参数
+            });
+            #endregion
+
             #region Autofac
             // Create the container builder.
             var autofacBuilder = new ContainerBuilder();
@@ -101,6 +123,13 @@ namespace Jk.CommonApi.WebApi
             app.UseMvc();
             //全局配置跨域，也可以在Controller中灵活配置 [EnableCors("AllowAllOrigin")]
             app.UseCors("AllowAllOrigin");
+
+            //Swagger
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
+            });
         }
     }
 }

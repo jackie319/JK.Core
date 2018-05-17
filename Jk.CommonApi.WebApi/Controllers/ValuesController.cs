@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using JK.CommonApi.Services.IServices;
 using log4net;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Jk.CommonApi.WebApi.Controllers
@@ -17,6 +18,10 @@ namespace Jk.CommonApi.WebApi.Controllers
         {
             _AppVersion = appVersion;
         }
+        /// <summary>
+        /// 获取总数
+        /// </summary>
+        /// <returns></returns>
         // GET api/values
         [HttpGet]
         public int  Get()
@@ -24,6 +29,11 @@ namespace Jk.CommonApi.WebApi.Controllers
             log.Info("哈哈，好的。 GetAppVersionCountOld");
             return _AppVersion.GetAppVersionCountOld();
         }
+        /// <summary>
+        /// 获取总数
+        /// </summary>
+        /// <returns></returns>
+        [AllowAnonymous]
         [Route("Test")]
         [HttpGet]
         public int Test()
