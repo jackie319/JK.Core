@@ -15,6 +15,7 @@ using log4net.Config;
 using log4net.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,6 +43,8 @@ namespace Jk.CommonApi.WebApi
             //内置注入
             //services.AddDbContext<JKObjectContext>(options => options.UseSqlServer(connection));
             services.AddMvc();
+            //注册HttpContext
+           // services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             #region log4net
             repository = LogManager.CreateRepository("NETCoreRepository");
             XmlConfigurator.Configure(repository, new FileInfo("log4net.config"));

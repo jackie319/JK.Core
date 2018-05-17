@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Jk.CommonApi.WebApi.Model;
 using JK.CommonApi.Services.IServices;
+using JK.Framework.API.BaseController;
 using log4net;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +31,7 @@ namespace Jk.CommonApi.WebApi.Controllers
             log.Info("哈哈，好的。 GetAppVersionCountOld");
             AppVersionViewModel model = new AppVersionViewModel();
             model.AppVersionCount = _AppVersion.GetAppVersionCountOld();
+            BaseApiController.AppendHeaderTotal(model.AppVersionCount);
             return model;
         }
         /// <summary>
