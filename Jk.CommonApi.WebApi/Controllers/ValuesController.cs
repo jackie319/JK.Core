@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Jk.CommonApi.WebApi.Model;
 using JK.CommonApi.Services.IServices;
+using JK.Core.API.Filter;
 using JK.Core.API.Model;
 using JK.Framework.API.BaseController;
 using log4net;
@@ -51,8 +52,9 @@ namespace Jk.CommonApi.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("Model")]
+        [ApiValidationFilter]
         [HttpPost]
-        public ApiResultModel Save()
+        public ApiResultModel Save([FromBody]TestModel model)
         {
             return this.ResultApiSuccess();
         }
