@@ -37,15 +37,17 @@ namespace Jk.CommonApi.WebApi.Controllers
             return model;
         }
         /// <summary>
-        /// 获取总数
+        /// 获取总数,测试中
         /// </summary>
         /// <returns></returns>
         [AllowAnonymous]
         [Route("Test")]
         [HttpGet]
-        public int Test()
+        public AppVersionViewModel Test()
         {
-            return _AppVersion.GetAppVersionCount();
+            AppVersionViewModel model = new AppVersionViewModel();
+            model.AppVersionCount = _AppVersion.GetAppVersionCount();
+            return model;
         }
         /// <summary>
         /// 操作类返回模型

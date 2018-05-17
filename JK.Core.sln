@@ -25,11 +25,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{F6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommonApi", "CommonApi", "{6CE3E58F-E0BC-4D89-AD21-4DA44FC36B2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JK.Data", "JK.Data\JK.Data.csproj", "{DB2095F6-8654-4CF1-80B6-5B0D2B4A9F33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JK.Data", "JK.Data\JK.Data.csproj", "{DB2095F6-8654-4CF1-80B6-5B0D2B4A9F33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jk.CommonApi.WebApi", "Jk.CommonApi.WebApi\Jk.CommonApi.WebApi.csproj", "{AD063702-9E7E-47F2-8475-25870B80C470}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jk.CommonApi.WebApi", "Jk.CommonApi.WebApi\Jk.CommonApi.WebApi.csproj", "{AD063702-9E7E-47F2-8475-25870B80C470}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JK.CommonApi.Services", "JK.CommonApi.Services\JK.CommonApi.Services.csproj", "{43BA7E7D-CBB0-4B9E-8A34-C73B825DE1D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JK.CommonApi.Services", "JK.CommonApi.Services\JK.CommonApi.Services.csproj", "{43BA7E7D-CBB0-4B9E-8A34-C73B825DE1D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JK.CommonApi.Domain", "JK.CommonApi.Domain\JK.CommonApi.Domain.csproj", "{61F657A7-1E31-419A-9942-33EC09888D42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{43BA7E7D-CBB0-4B9E-8A34-C73B825DE1D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43BA7E7D-CBB0-4B9E-8A34-C73B825DE1D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43BA7E7D-CBB0-4B9E-8A34-C73B825DE1D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61F657A7-1E31-419A-9942-33EC09888D42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61F657A7-1E31-419A-9942-33EC09888D42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61F657A7-1E31-419A-9942-33EC09888D42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61F657A7-1E31-419A-9942-33EC09888D42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +87,7 @@ Global
 		{DB2095F6-8654-4CF1-80B6-5B0D2B4A9F33} = {40D895F4-4D10-4496-BA72-E627DFDECF19}
 		{AD063702-9E7E-47F2-8475-25870B80C470} = {6CE3E58F-E0BC-4D89-AD21-4DA44FC36B2E}
 		{43BA7E7D-CBB0-4B9E-8A34-C73B825DE1D2} = {6CE3E58F-E0BC-4D89-AD21-4DA44FC36B2E}
+		{61F657A7-1E31-419A-9942-33EC09888D42} = {6CE3E58F-E0BC-4D89-AD21-4DA44FC36B2E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DA420B22-683A-46C2-8BF0-E57E13364A74}
