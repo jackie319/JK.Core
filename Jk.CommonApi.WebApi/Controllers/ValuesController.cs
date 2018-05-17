@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using JK.CommonApi.Services.IServices;
+using log4net;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Jk.CommonApi.WebApi.Controllers
@@ -11,6 +12,7 @@ namespace Jk.CommonApi.WebApi.Controllers
     public class ValuesController : Controller
     {
         private IAppVersion _AppVersion;
+        private ILog log = LogManager.GetLogger(Startup.repository.Name, typeof(ValuesController));
         public ValuesController(IAppVersion appVersion)
         {
             _AppVersion = appVersion;
@@ -19,6 +21,7 @@ namespace Jk.CommonApi.WebApi.Controllers
         [HttpGet]
         public int  Get()
         {
+            log.Info("哈哈，好的。 GetAppVersionCountOld");
             return _AppVersion.GetAppVersionCountOld();
         }
         [Route("Test")]
