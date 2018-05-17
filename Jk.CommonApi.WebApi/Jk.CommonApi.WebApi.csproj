@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\JK.CommonApi.Services\JK.CommonApi.Services.csproj" />
+    <ProjectReference Include="..\JK.Core.API\JK.Core.API.csproj" />
     <ProjectReference Include="..\JK.Core.Data\JK.Core.Data.csproj" />
   </ItemGroup>
 

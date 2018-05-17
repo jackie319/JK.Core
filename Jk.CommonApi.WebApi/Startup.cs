@@ -7,6 +7,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using JK.CommonApi.Services.IServices;
 using JK.CommonApi.Services.ServicesImpl;
+using JK.Core.API.Autofac;
 using JK.Core.Core.Data;
 using JK.Core.Data;
 using log4net;
@@ -32,25 +33,19 @@ namespace Jk.CommonApi.WebApi
         }
 
         public IConfiguration Configuration { get; }
+        public static ILoggerRepository repository { get;set;}
 
-        public IContainer ApplicationContainer { get; private set; }
-
-        private static DbContextOptions _contextOptions;
-
-        public static ILoggerRepository repository { get; set; }
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            string connection = @"Server=120.78.156.158;database=P2BPlatForm;UID=p2b;PWD=123456";
+            string connection=Configuration.GetConnectionString("EntityContext");
             //内置注入
             //services.AddDbContext<JKObjectContext>(options => options.UseSqlServer(connection));
             services.AddMvc();
-
             #region log4net
             repository = LogManager.CreateRepository("NETCoreRepository");
             XmlConfigurator.Configure(repository, new FileInfo("log4net.config"));
             #endregion
-
             #region EnableCors
             //var urls = Configuration.GetConnectionString("AllowCors:AllowAllOrigin").Value.Split(',');
             //配置跨域处理
@@ -86,30 +81,7 @@ namespace Jk.CommonApi.WebApi
                   c.OperationFilter<HttpHeaderOperation>(); // 添加httpHeader参数
             });
             #endregion
-
-            #region Autofac
-            // Create the container builder.
-            var autofacBuilder = new ContainerBuilder();
-
-            _contextOptions = new DbContextOptionsBuilder()
-            .UseSqlServer(connection)
-            .Options;
-            autofacBuilder.Register<IDbContext>(c => new JKObjectContext(_contextOptions)).InstancePerDependency();
-            //builder.RegisterType<JKObjectContext>().As<IDbContext>().InstancePerDependency();
-            autofacBuilder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>)).InstancePerDependency();
-
-
-            // Register dependencies, populate the services from
-            // the collection, and build the container. If you want
-            // to dispose of the container at the end of the app,
-            // be sure to keep a reference to it as a property or field.
-            autofacBuilder.RegisterType<AppVersionImpl>().As<IAppVersion>().InstancePerDependency();
-            autofacBuilder.Populate(services);
-            this.ApplicationContainer = autofacBuilder.Build();
-
-            // Create the IServiceProvider based on the container.
-            return new AutofacServiceProvider(this.ApplicationContainer);
-            #endregion
+            return RegisterApiAutofac.RegisterApi(services, connection, AutoFacRegister.RegisterAutofacDelegate);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -119,8 +91,6 @@ namespace Jk.CommonApi.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
-
-
             app.UseMvc();
             //全局配置跨域，也可以在Controller中灵活配置 [EnableCors("AllowAllOrigin")]
             app.UseCors("AllowAllOrigin");
@@ -137,5 +107,7 @@ namespace Jk.CommonApi.WebApi
             //自定义样式
             ////https://docs.microsoft.com/zh-cn/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-2.0&tabs=visual-studio%2Cvisual-studio-xml
         }
+
+
     }
 }
