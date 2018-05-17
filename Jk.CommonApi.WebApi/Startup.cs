@@ -8,6 +8,7 @@ using Autofac.Extensions.DependencyInjection;
 using JK.CommonApi.Services.IServices;
 using JK.CommonApi.Services.ServicesImpl;
 using JK.Core.API.Autofac;
+using JK.Core.API.Filter;
 using JK.Core.Core.Data;
 using JK.Core.Data;
 using JK.Framework.API.Filter;
@@ -47,6 +48,7 @@ namespace Jk.CommonApi.WebApi
             services.AddMvc(options => 
             {
                 options.Filters.Add(new JKApiTokenAuthorizeAttribute(privateToken)); // an instance
+                options.Filters.Add(new ApiGlobalExceptioinFilter(GlobalException.GlobalExceptionHandler));
             } );
             //注册HttpContext
            // services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

@@ -46,5 +46,10 @@ namespace JK.Core.API.Model
             ExceptionType = exceptionType;
             RedirectUrl = redirectUrl;
         }
+
+        public JsonResultModel ToJsonResultModel()
+        {
+            return new JsonResultModel(this);
+        }
     }
 }

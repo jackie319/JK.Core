@@ -17,27 +17,22 @@ namespace JK.Core.API.Filter
     public class ApiGlobalExceptioinFilter : ExceptionFilterAttribute
     {
 
-        //public delegate ApiResultModel ExceptionHandlerDelegate(HttpActionExecutedContext actionExecutedContext);
-        //public ExceptionHandlerDelegate ExceptionHandler { get; }
+        public delegate ApiResultModel ExceptionHandlerDelegate(ExceptionContext actionExecutedContext);
+        public ExceptionHandlerDelegate ExceptionHandler { get; }
 
-        //public ApiGlobalExceptioinFilter(ExceptionHandlerDelegate exceptionHandler)
-        //{
-        //    ExceptionHandler = exceptionHandler;
-        //}
+        public ApiGlobalExceptioinFilter(ExceptionHandlerDelegate exceptionHandler)
+        {
+            ExceptionHandler = exceptionHandler;
+        }
 
-        //public override void OnException(HttpActionExecutedContext actionExecutedContext)
-        //{
-        //    var url = actionExecutedContext.Request.RequestUri.ToString();
-        //    var exception = actionExecutedContext.Exception;
-        //    LogTool.ErrorRecord("捕获全局异常：", exception.Message, url, "", exception.StackTrace);
-
-        //    var errorHandledResult = ExceptionHandler(actionExecutedContext);
-        //    var response = new HttpResponseMessage(HttpStatusCode.InternalServerError);
-        //    var errorJson = JsonConvert.SerializeObject(errorHandledResult);
-        //    response.Content = new StringContent(errorJson,Encoding.UTF8, "application/json");
-        //    actionExecutedContext.Response = response;
-        //    base.OnException(actionExecutedContext);
-        //}
+        public override void OnException(ExceptionContext actionExecutedContext)
+        {
+           // var url = actionExecutedContext.HttpContext.Request.Path.ToString();
+           // var exception = actionExecutedContext.Exception;
+            var errorHandledResult = ExceptionHandler(actionExecutedContext);
+            actionExecutedContext.Result = errorHandledResult.ToJsonResultModel();
+            actionExecutedContext.ExceptionHandled = true;
+        }
 
     }
 }
