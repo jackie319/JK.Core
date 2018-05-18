@@ -9,6 +9,7 @@ using JK.Core.API.Model;
 using JK.Framework.API.BaseController;
 using log4net;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Jk.CommonApi.WebApi.Controllers
@@ -17,10 +18,12 @@ namespace Jk.CommonApi.WebApi.Controllers
     public class ValuesController : Controller
     {
         private IAppVersion _AppVersion;
+        private  IHttpContextAccessor _accessor;
         private ILog log = LogManager.GetLogger(Startup.repository.Name, typeof(ValuesController));
-        public ValuesController(IAppVersion appVersion)
+        public ValuesController(IAppVersion appVersion, IHttpContextAccessor accessor)
         {
             _AppVersion = appVersion;
+            _accessor = accessor;
         }
         /// <summary>
         /// 获取总数
@@ -33,7 +36,7 @@ namespace Jk.CommonApi.WebApi.Controllers
             log.Info("哈哈，好的。 GetAppVersionCountOld");
             AppVersionViewModel model = new AppVersionViewModel();
             model.AppVersionCount = _AppVersion.GetAppVersionCountOld();
-            BaseApiController.AppendHeaderTotal(model.AppVersionCount);
+            BaseApiController.AppendHeaderTotal(_accessor,model.AppVersionCount);
             return model;
         }
         /// <summary>

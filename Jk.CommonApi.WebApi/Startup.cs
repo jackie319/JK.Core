@@ -51,7 +51,7 @@ namespace Jk.CommonApi.WebApi
                 options.Filters.Add(new ApiGlobalExceptioinFilter(GlobalException.GlobalExceptionHandler));
             } );
             //注册HttpContext
-           // services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             #region log4net
             repository = LogManager.CreateRepository("NETCoreRepository");
             XmlConfigurator.Configure(repository, new FileInfo("log4net.config"));

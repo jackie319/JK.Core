@@ -11,21 +11,19 @@ namespace JK.Framework.API.BaseController
 {
     public class BaseApiController : Controller
     {
-        public static IHttpContextAccessor _accessor=new HttpContextAccessor();
         private const string ResultTotal = "X-Total-Count";
         private const string SessionKey = "X-SessionKey";
 
-    
-        public static void AppendHeaderTotal(int total)
+        public static void AppendHeaderTotal(IHttpContextAccessor accessor, int total)
         {
-            _accessor.HttpContext.Response.Headers.Add("Access-Control-Expose-Headers", ResultTotal);
-            _accessor.HttpContext.Response.Headers.Add(ResultTotal, Convert.ToString(total));
+            accessor.HttpContext.Response.Headers.Add("Access-Control-Expose-Headers", ResultTotal);
+            accessor.HttpContext.Response.Headers.Add(ResultTotal, Convert.ToString(total));
         }
 
-        public static void AppendHeaderSessionKey(string sessionKey)
+        public static void AppendHeaderSessionKey(IHttpContextAccessor accessor, string sessionKey)
         {
-            _accessor.HttpContext.Response.Headers.Add("Access-Control-Expose-Headers", SessionKey);
-            _accessor.HttpContext.Response.Headers.Add(SessionKey, sessionKey);
+            accessor.HttpContext.Response.Headers.Add("Access-Control-Expose-Headers", SessionKey);
+            accessor.HttpContext.Response.Headers.Add(SessionKey, sessionKey);
         }
     }
 }
