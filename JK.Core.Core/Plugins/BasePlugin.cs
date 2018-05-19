@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace JK.Core.Core.Plugins
 {
-    public abstract class BasePlugin:IPlugin
-    {
-        public PluginDescriptor PluginDescriptor { get; set; }
-        public void Install()
-        {
-            throw new NotImplementedException();
-        }
+    //public abstract class BasePlugin:IPlugin
+    //{
+    //    public PluginDescriptor PluginDescriptor { get; set; }
+    //    public void Install()
+    //    {
+    //        throw new NotImplementedException();
+    //    }
 
-        public void Uninstall()
-        {
-            throw new NotImplementedException();
-        }
-    }
+    //    public void Uninstall()
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
 }
