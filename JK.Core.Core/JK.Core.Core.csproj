@@ -5,10 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Caching\" />
-    <Folder Include="Config\" />
-    <Folder Include="Infrastructure\DependencyManagement\" />
-    <Folder Include="Plugins\" />
+    <Reference Include="Microsoft.Extensions.Caching.Memory">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.caching.memory\2.0.2\lib\netstandard2.0\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.AccessControl">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\system.security.accesscontrol\4.4.0\ref\netstandard2.0\System.Security.AccessControl.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
