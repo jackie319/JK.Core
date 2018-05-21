@@ -11,6 +11,7 @@ using JK.Core.API.Autofac;
 using JK.Core.API.Filter;
 using JK.Core.Core.Data;
 using JK.Core.Data;
+using JK.Data.Model;
 using JK.Framework.API.Filter;
 using log4net;
 using log4net.Config;
@@ -44,7 +45,7 @@ namespace Jk.CommonApi.WebApi
             string connection=Configuration.GetConnectionString("EntityContext");
             string privateToken = Configuration.GetConnectionString("PrivateToken");
             //内置注入
-            //services.AddDbContext<JKObjectContext>(options => options.UseSqlServer(connection));
+           // services.AddDbContext<JKDataContext>(options => options.UseSqlServer(connection));
             services.AddMvc(options => 
             {
                 options.Filters.Add(new JKApiTokenAuthorizeAttribute(privateToken)); // an instance
@@ -91,7 +92,9 @@ namespace Jk.CommonApi.WebApi
                   c.OperationFilter<HttpHeaderOperation>(); // 添加httpHeader参数
             });
             #endregion
-            return RegisterApiAutofac.RegisterApi(services, connection, AutoFacRegister.RegisterAutofacDelegate);
+
+          //  return RegisterApiAutofac.RegisterApi(services, AutoFacRegister.RegisterAutofacDelegateTwo);
+           return RegisterApiAutofac.RegisterApi(services, connection, AutoFacRegister.RegisterAutofacDelegate);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

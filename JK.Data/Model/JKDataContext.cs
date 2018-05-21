@@ -54,6 +54,11 @@ namespace JK.Data.Model
         public virtual DbSet<WithdrawCashOrder> WithdrawCashOrder { get; set; }
         public virtual DbSet<WithdrawCashRecords> WithdrawCashRecords { get; set; }
 
+        public JKDataContext(DbContextOptions options)
+       : base(options)
+        {
+            //((IObjectContextAdapter) this).ObjectContext.ContextOptions.LazyLoadingEnabled = true;
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

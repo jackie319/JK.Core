@@ -47,5 +47,30 @@ namespace JK.Core.API.Autofac
             // Create the IServiceProvider based on the container.
             return new AutofacServiceProvider(ApplicationContainer);
         }
+
+        /// <summary>
+        /// Context 由内置注入,IRepository的实现类 在项目中单独注入（项目自己实现）。
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="registerAutofacDelegate"></param>
+        /// <returns></returns>
+        public static IServiceProvider RegisterApi(IServiceCollection services, RegisterAutofacDelegate registerAutofacDelegate)
+        {
+            ContainerBuilder autofacBuilder = new ContainerBuilder();
+           // autofacBuilder.Register<IDbContext>(c => new JKObjectContext(_contextOptions)).InstancePerLifetimeScope();
+           // autofacBuilder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
+
+
+            // Register dependencies, populate the services from
+            // the collection, and build the container. If you want
+            // to dispose of the container at the end of the app,
+            // be sure to keep a reference to it as a property or field.
+            registerAutofacDelegate(autofacBuilder);
+            autofacBuilder.Populate(services);
+            ApplicationContainer = autofacBuilder.Build();
+
+            // Create the IServiceProvider based on the container.
+            return new AutofacServiceProvider(ApplicationContainer);
+        }
     }
 }

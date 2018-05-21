@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\JK.Core.Core\JK.Core.Core.csproj" />
+    <ProjectReference Include="..\JK.Core.Data\JK.Core.Data.csproj" />
     <ProjectReference Include="..\JK.Data\JK.Data.csproj" />
   </ItemGroup>
 

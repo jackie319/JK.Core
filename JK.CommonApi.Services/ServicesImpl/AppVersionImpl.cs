@@ -23,10 +23,12 @@ namespace JK.CommonApi.Services.ServicesImpl
 
         public int GetAppVersionCountOld()
         {
-            using (JKDataContext context=new JKDataContext())
-            {
-                return context.AppVersion.Count();
-            }
+            //    using (JKDataContext context=new JKDataContext())
+            //    {
+            //        return context.AppVersion.Count();
+            //    }
+            return 1;
         }
+          
     }
 }
