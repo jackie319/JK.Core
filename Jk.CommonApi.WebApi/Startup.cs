@@ -49,7 +49,9 @@ namespace Jk.CommonApi.WebApi
             services.AddMvc(options => 
             {
                 options.Filters.Add(new JKApiTokenAuthorizeAttribute(privateToken)); // an instance
+                options.Filters.Add(new ApiSessionAuthorizeAttribute()); //全局注入时，autofac的属性注入不生效 
                 options.Filters.Add(new ApiGlobalExceptioinFilter(GlobalException.GlobalExceptionHandler));
+           
             } );
             //注册HttpContext
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -93,8 +95,8 @@ namespace Jk.CommonApi.WebApi
             });
             #endregion
 
-          //  return RegisterApiAutofac.RegisterApi(services, AutoFacRegister.RegisterAutofacDelegateTwo);
-           return RegisterApiAutofac.RegisterApi(services, connection, AutoFacRegister.RegisterAutofacDelegate);
+            //  return RegisterApiAutofac.RegisterApi(services, AutoFacRegister.RegisterAutofacDelegateCustomer);
+            return RegisterApiAutofac.RegisterApi(services, connection, AutoFacRegister.RegisterAutofacDelegate);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

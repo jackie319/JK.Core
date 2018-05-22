@@ -14,12 +14,12 @@ namespace Jk.CommonApi.WebApi
         public static void RegisterAutofacDelegate(ContainerBuilder builder)
         {
             builder.RegisterType<AppVersionImpl>().As<IAppVersion>().InstancePerDependency();
+            builder.RegisterType<ApiSessionAuthorizeAttribute>().PropertiesAutowired().SingleInstance();
             //builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
-            //builder.RegisterWebApiFilterProvider(GlobalConfiguration.Configuration);
-
+           // builder.RegisterWebApiFilterProvider(GlobalConfiguration.Configuration);
         }
 
-        public static void RegisterAutofacDelegateTwo(ContainerBuilder builder)
+        public static void RegisterAutofacDelegateCustomer(ContainerBuilder builder)
         {
             builder.RegisterGeneric(typeof(MyEfResporsitory<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
             builder.RegisterType<AppVersionImpl>().As<IAppVersion>().InstancePerDependency();
