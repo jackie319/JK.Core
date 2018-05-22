@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using JK.Core.Core.Caching;
 using JK.Core.Core.Data;
 using JK.Core.Data;
 using Microsoft.EntityFrameworkCore;
@@ -33,7 +34,7 @@ namespace JK.Core.API.Autofac
             .Options;
             autofacBuilder.Register<IDbContext>(c => new JKObjectContext(_contextOptions)).InstancePerLifetimeScope();
             autofacBuilder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
-
+            autofacBuilder.RegisterType<MemoryCacheManager>().As<ICacheManager>().SingleInstance();
 
             // Register dependencies, populate the services from
             // the collection, and build the container. If you want
@@ -57,9 +58,9 @@ namespace JK.Core.API.Autofac
         public static IServiceProvider RegisterApi(IServiceCollection services, RegisterAutofacDelegate registerAutofacDelegate)
         {
             ContainerBuilder autofacBuilder = new ContainerBuilder();
-           // autofacBuilder.Register<IDbContext>(c => new JKObjectContext(_contextOptions)).InstancePerLifetimeScope();
-           // autofacBuilder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
-
+            // autofacBuilder.Register<IDbContext>(c => new JKObjectContext(_contextOptions)).InstancePerLifetimeScope();
+            // autofacBuilder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
+            autofacBuilder.RegisterType<MemoryCacheManager>().As<ICacheManager>().SingleInstance();
 
             // Register dependencies, populate the services from
             // the collection, and build the container. If you want
