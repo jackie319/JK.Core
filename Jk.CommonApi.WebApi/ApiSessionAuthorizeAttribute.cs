@@ -19,12 +19,13 @@ namespace Jk.CommonApi.WebApi
     //ActionFilterAttribute,AuthorizeFilter
     public class ApiSessionAuthorizeAttribute : AuthorizeFilter
     {
-        public ICacheManager _cache { get; set; }
+        public SessionCacheManager _cache { get; set; }
         private ILog _log = LogManager.GetLogger(Startup.repository.Name, typeof(ApiSessionAuthorizeAttribute));
 
         private static AuthorizationPolicy _policy_ = new AuthorizationPolicy(new[] { new DenyAnonymousAuthorizationRequirement() }, new string[] { });
         public ApiSessionAuthorizeAttribute() : base(_policy_)
         {
+            _cache = SessionCacheManager.Instance();
         }
 
         public override async Task OnAuthorizationAsync(AuthorizationFilterContext context)

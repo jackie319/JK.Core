@@ -14,7 +14,6 @@ namespace Jk.CommonApi.WebApi
         public static void RegisterAutofacDelegate(ContainerBuilder builder)
         {
             builder.RegisterType<AppVersionImpl>().As<IAppVersion>().InstancePerDependency();
-            builder.RegisterType<ApiSessionAuthorizeAttribute>().PropertiesAutowired().SingleInstance();
             //builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
            // builder.RegisterWebApiFilterProvider(GlobalConfiguration.Configuration);
         }
