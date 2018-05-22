@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace JK.Core.Core
 {
-    public class UserBase :IPrincipal{
+    public class UserBase :ClaimsPrincipal{
         public bool IsInRole(string role)
         {
             return true;

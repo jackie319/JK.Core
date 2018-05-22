@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JK.Framework.Core;
-using System.Web;
 using Microsoft.AspNetCore.Mvc.Filters;
 using JK.Framework.Core.Core;
 using Microsoft.Extensions.Primitives;
+using System.Net;
 
 namespace JK.Framework.API.Filter
 {
@@ -31,7 +31,7 @@ namespace JK.Framework.API.Filter
                 {
                     StringValues value;
                    filterContext.HttpContext.Request.Headers.TryGetValue("token", out value);
-                    token = HttpUtility.UrlDecode(value.FirstOrDefault());
+                    token = WebUtility.UrlDecode(value.FirstOrDefault());
                 }
                 catch (ArgumentException)
                 {
