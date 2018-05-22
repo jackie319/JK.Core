@@ -107,6 +107,8 @@ namespace Jk.CommonApi.WebApi
                 app.UseDeveloperExceptionPage();
             }
             app.UseMvc();
+            //全局异常
+            app.UseMiddleware<ErrorHandlingMiddleware>();
             //全局配置跨域，也可以在Controller中灵活配置 [EnableCors("AllowAllOrigin")]
             app.UseCors("AllowAllOrigin");
 
